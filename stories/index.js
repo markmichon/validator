@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
 import ResultsList from '../src/components/ResultsList';
+import Embed from '../src/components/Embed'
 import styles from '../src/styles/main.scss'
 let cssResults = {
   "errors": [
@@ -462,7 +463,7 @@ let cssResults = {
   "resultType": "CSS"
 }
 let htmlResults = {
-  "warnings": [],
+
   "errors": [
     {
       "type": "error",
@@ -500,3 +501,19 @@ storiesOf('Results List', module)
   .add('HTML Results', () => (
     <ResultsList results={htmlResults} title="HTML" />
   ))
+  .add('Side by Side', () => (
+    <div className="flex-container">
+      <ResultsList results={{}} title="HTML" />
+      <ResultsList results={cssResults} title="CSS" />
+    </div>
+  ))
+
+storiesOf('Previews', module)
+  .add('320 and 600', () => {
+    return (
+      <div className="flex-container">
+      <Embed url="http://markmichon.com" width="320" height="480" />
+      <Embed url="http://markmichon.com" width="600" height="800" />
+    </div>
+    )
+  })

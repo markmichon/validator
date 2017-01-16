@@ -2,22 +2,25 @@ import React from 'react';
 import ResultItem from './ResultItem'
 
 
-const ResultsList = ({ title, results }) => (
+const ResultsList = ({ title, results }) => {
+  let valid = !results.warnings && !results.errors ? true : false;
+  return (
     <section className="results-container">
       <header className="results-header">
         <h2>{title}</h2>
-        <div className="results-header__group">
-          <div className="results-header__group-item">
+        { !valid && <div className="results-header__group">
+          {results.warnings && <div className="results-header__group-item">
             <span className="warning-count">{results.warnings ? results.warnings.length : "0"}</span>
             Warnings
-          </div>
-          <div className="results-header__group-item">
+          </div>}
+          {results.errors && <div className="results-header__group-item">
             <span className="error-count">{results.errors ? results.errors.length : "0"}</span>
             Errors
-          </div>
-        </div>
+          </div>}
+        </div>}
+        { valid && <div className="results-header__group">No Errors!</div> }
       </header>
-      <ul className="results-list">
+      { !valid && <ul className="results-list">
         {results.errors ? results.errors.map((result, i) =>
           <ResultItem
             key={i}
@@ -33,9 +36,10 @@ const ResultsList = ({ title, results }) => (
             type="warning"
           />
         ) : null}
-      </ul>
+      </ul>}
     </section>
   );
+}
 
 
 export default ResultsList
