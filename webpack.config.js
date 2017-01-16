@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const DashBoardPlugin = require('webpack-dashboard/plugin');
 
 // Todo: Figure out extract text to pull sass into it's own file.
 // const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -33,10 +34,13 @@ const config = {
       // CSS Loaders if css is imported into our JS files
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'], // shorter, default array syntax
+        use: ['style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap'], // shorter, default array syntax
       },
     ]
   },
+  plugins: [
+    new DashBoardPlugin()
+  ]
 };
 
 module.exports = config;

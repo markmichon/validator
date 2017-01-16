@@ -1,21 +1,49 @@
-$padding-regular: .5em;
+@import '~open-color/open-color';
+// @import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');
 
-$grey-dark: hsl(0, 0, 15);
-$grey-light: hsl(0, 0, 90);
+$system-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 
-$error: hsl(348, 83%, 47%);
-$warning: hsl(52, 97%, 59%);
+$padding-regular: .5rem;
+
+
+
+$grey-dark: hsl(215, 20%, 17%);
+$grey-light: $oc-gray-3;
+
+$error: $oc-red-9;
+$warning: $oc-yellow-4;
 
 * {
   box-sizing:border-box;
 }
-h2 {
-  padding:0;
+
+html {
+  font-family: $system-stack;
+  line-height: 1.618;
+}
+
+h1,h2,h3 {
   margin:0;
+  padding:0;
+}
+
+code {
+  // display:inline-block;
+  background-color: $oc-gray-2;
+  border: 2px solid $oc-gray-3;
+  padding: .25rem .5rem;
+}
+
+.flex-container {
+  display: flex;
+  width: 100%;
+  align-items:flex-start;
+  justify-content: center;;
 }
 
 .results-container {
-  width: 800px;
+  width: 600px;
+  margin: 1rem;
 }
 
 // Result Header
@@ -25,26 +53,33 @@ h2 {
   justify-content: space-between;
   background-color: $grey-dark;
   color: #fefefe;
+  padding: .25rem .5rem;
+  border-bottom: .25rem solid lighten($grey-dark, 10%);
+
+  h2 {
+    padding:0;
+    margin:0;
+    font-weight:normal;
+    vertical-align: baseline;
+    font-size: 1.5rem;
+  }
 }
 
 .results-header__group {
   display: flex;
   align-items: center;
-  padding: $padding-regular;
-  // background: green;
 }
 
 .results-header__group-item:first-child {
-  margin-right: 1em;
+  margin-right: 1rem;
 }
-
-
 
 .warning-count, .error-count {
   display: inline-block;
   color: black;
-  padding: .25em;
-  border-radius: .25em;
+  padding: .25rem .5rem;
+  border-radius: .25rem;
+  margin-right: .25rem;
 }
 .warning-count {
   background-color: $warning;
@@ -56,21 +91,25 @@ h2 {
 // Result list
 
 .results-list {
+  background-color: $oc-gray-3;
+  border-bottom: .25em $oc-gray-5 solid;
   list-style: none;
   padding: 0;
   margin: 0;
+  height: 50vh;
+  overflow: scroll;
 
   li {
     background-color: $grey-light;
-    padding: 1em .5em;
+    padding: 1rem .5rem;
     margin-bottom: .25em;
-    display: flex;
+    // display: flex;
 
     &.error {
-      border-left: .5em solid darken($error, 5%);
+      border-left: .5rem solid $error;
     }
     &.warning {
-      border-left: .5em solid darken($warning, 5%);
+      border-left: .5rem solid $warning;
     }
 
   }

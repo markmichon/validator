@@ -3,7 +3,7 @@ import ResultItem from './ResultItem'
 
 
 const ResultsList = ({ title, results }) => (
-    <section>
+    <section className="results-container">
       <header className="results-header">
         <h2>{title}</h2>
         <div className="results-header__group">

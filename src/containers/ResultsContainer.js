@@ -10,7 +10,7 @@ class ResultsContainer extends Component {
   render() {
     const {htmlResults, cssResults} = this.props;
     return (
-      <div>
+      <div className="flex-container">
         <ResultsList results={htmlResults} title="HTML" />
         <ResultsList results={cssResults} title="CSS" />
       </div>
