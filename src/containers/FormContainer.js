@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import UrlField from '../components/UrlField'
 import { connect } from 'react-redux'
 import { fetchUrl } from '../actions'
-
+import { baseURL } from '../services/rest'
 class FormContainer extends Component {
 
   constructor(props) {
@@ -13,6 +13,7 @@ class FormContainer extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUrlChange = this.handleUrlChange.bind(this);
+    fetch(baseURL + '/ping');
   }
 
   handleSubmit(e) {

@@ -9,8 +9,6 @@ class ResultsContainer extends Component {
 
   render() {
     const {htmlResults, cssResults, hasUrl, isFetching} = this.props;
-    console.log(htmlResults.length)
-
     if (hasUrl) {
       return (
         <div className="flex-container">

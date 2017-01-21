@@ -1,4 +1,4 @@
-const baseURL = 'http://localhost:5000';
+export const baseURL = 'http://validator-services.herokuapp.com';
 
 export const validateHTML = (url) =>
   fetch(baseURL + '/html?url=' + url)
