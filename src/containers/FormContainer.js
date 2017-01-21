@@ -13,7 +13,7 @@ class FormContainer extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUrlChange = this.handleUrlChange.bind(this);
-    fetch(baseURL + '/ping');
+    // fetch(baseURL + '/ping');
   }
 
   handleSubmit(e) {
