@@ -30,8 +30,22 @@ const cssResults = (state = {}, action) => {
   }
 }
 
+let initUiState = {
+  hasUrl: false
+}
+
+const ui = (state = initUiState, action) => {
+  switch (action.type) {
+    case 'VALIDATE_HTML_SUCCESS':
+    case 'VALIDATE_CSS_SUCCESS':
+      return Object.assign({}, state, {hasUrl: true});
+    default:
+      return state;
+  }
+}
 
 const rootReducer = combineReducers({
+  ui,
   isFetching,
   htmlResults,
   cssResults,

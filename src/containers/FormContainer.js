@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import UrlForm from '../components/UrlForm'
+import UrlField from '../components/UrlField'
 import { connect } from 'react-redux'
 import { fetchUrl } from '../actions'
 
@@ -10,24 +10,29 @@ class FormContainer extends Component {
     this.state = {
       url: ''
     }
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleUrlChange = this.handleUrlChange.bind(this);
   }
 
-  handleSubmit(value) {
-    this.props.fetchUrl(value);
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.fetchUrl(this.state.url);
+  }
+
+  handleUrlChange(e) {
+    this.setState({ url: e.target.value });
   }
 
   render() {
     const { isFetching } = this.props
-    if (isFetching) {
-      return (
-        <p>Loading...</p>
-      )
-    }
     return (
-      <div>
-        <h1>Form Container</h1>
-        <UrlForm onSubmit={this.handleSubmit.bind(this)} />
-      </div>
+      <form
+        onSubmit={this.handleSubmit}
+        className="form-container"
+        >
+        <UrlField controlFunc={this.handleUrlChange} isLoading={isFetching}/>
+      </form>
     )
   }
 }

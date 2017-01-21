@@ -18,7 +18,7 @@ const ResultsList = ({ title, results }) => {
             Errors
           </div>}
         </div>}
-        { valid && <div className="results-header__group">No Errors!</div> }
+        { valid && <div className="results-header__group">No Errors, great job!</div> }
       </header>
       { !valid && <ul className="results-list">
         {results.errors ? results.errors.map((result, i) =>

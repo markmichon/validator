@@ -8,13 +8,23 @@ class ResultsContainer extends Component {
   }
 
   render() {
-    const {htmlResults, cssResults} = this.props;
-    return (
-      <div className="flex-container">
-        <ResultsList results={htmlResults} title="HTML" />
-        <ResultsList results={cssResults} title="CSS" />
-      </div>
-    )
+    const {htmlResults, cssResults, hasUrl, isFetching} = this.props;
+    console.log(htmlResults.length)
+
+    if (hasUrl) {
+      return (
+        <div className="flex-container">
+          <ResultsList results={htmlResults} title="HTML" />
+          <ResultsList results={cssResults} title="CSS" />
+        </div>
+      )
+    } else {
+      return (
+        <div className="flex-container">
+          <p>To get started, enter a url</p>
+        </div>
+      );
+    }
   }
 }
 
@@ -22,6 +32,8 @@ const mapStateToProps = (state) => {
   return {
     htmlResults: state.htmlResults,
     cssResults: state.cssResults,
+    hasUrl: state.ui.hasUrl,
+    isFetching: state.isFetching,
   }
 }
 

@@ -1,7 +1,10 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
+import { withKnobs } from '@kadira/storybook-addon-knobs';
 import ResultsList from '../src/components/ResultsList';
-import Embed from '../src/components/Embed'
+import Embed from '../src/components/Embed';
+import UrlForm from '../src/components/UrlForm'
+import SearchIcon from '../src/components/SearchIcon'
 import styles from '../src/styles/main.scss'
 let cssResults = {
   "errors": [
@@ -517,3 +520,19 @@ storiesOf('Previews', module)
     </div>
     )
   })
+
+storiesOf('Form', module)
+  .add('Standard', () => (
+    <UrlForm onSubmit={action('submitted')} isLoading={false}/>
+  ))
+  .add('Loading', () => (
+    <UrlForm onSubmit={action('submitted')} isLoading={true} />
+  ))
+
+storiesOf('Search Icon', module)
+  .add('Static', () => (
+    <SearchIcon size="100px" isAnimating={false} />
+  ))
+  .add('Animating', () => (
+    <SearchIcon size="100px" isAnimating={true} />
+  ))

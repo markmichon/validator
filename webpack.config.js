@@ -29,7 +29,8 @@ const config = {
         test: /\.js$/,
         use: [{
           loader: 'babel-loader' // expanded syntax as object with options
-        }]
+        }],
+        exclude: '/node_modules/',
       },
       // CSS Loaders if css is imported into our JS files
       {
