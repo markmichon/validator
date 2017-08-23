@@ -1,32 +1,32 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from "redux"
 
 const isFetching = (state = false, action) => {
   switch (action.type) {
-    case 'VALIDATE_HTML_REQUEST':
-      return true;
-    case 'VALIDATE_HTML_SUCCESS':
-    case 'VALIDATE_HTML_FAILURE':
-      return false;
+    case "VALIDATE_HTML_REQUEST":
+      return true
+    case "VALIDATE_HTML_SUCCESS":
+    case "VALIDATE_HTML_FAILURE":
+      return false
     default:
-      return state;
+      return state
   }
-};
+}
 
 const htmlResults = (state = {}, action) => {
   switch (action.type) {
-    case 'VALIDATE_HTML_SUCCESS':
-      return Object.assign({}, action.response, {resultType: 'HTML'});
+    case "VALIDATE_HTML_SUCCESS":
+      return Object.assign({}, action.response, { resultType: "HTML" })
     default:
-      return state;
+      return state
   }
 }
 
 const cssResults = (state = {}, action) => {
   switch (action.type) {
-    case 'VALIDATE_CSS_SUCCESS':
-      return Object.assign({}, action.response, {resultType: 'CSS'});
+    case "VALIDATE_CSS_SUCCESS":
+      return Object.assign({}, action.response, { resultType: "CSS" })
     default:
-      return state;
+      return state
   }
 }
 
@@ -36,11 +36,11 @@ let initUiState = {
 
 const ui = (state = initUiState, action) => {
   switch (action.type) {
-    case 'VALIDATE_HTML_SUCCESS':
-    case 'VALIDATE_CSS_SUCCESS':
-      return Object.assign({}, state, {hasUrl: true});
+    case "VALIDATE_HTML_SUCCESS":
+    case "VALIDATE_CSS_SUCCESS":
+      return Object.assign({}, state, { hasUrl: true })
     default:
-      return state;
+      return state
   }
 }
 
@@ -48,7 +48,7 @@ const rootReducer = combineReducers({
   ui,
   isFetching,
   htmlResults,
-  cssResults,
-});
+  cssResults
+})
 
-export default rootReducer;
+export default rootReducer
