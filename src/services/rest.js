@@ -1,4 +1,4 @@
-export const baseURL = "https://validator-services.herokuapp.com"
+export const baseURL = "https://validator-services.now.sh"
 
 export const validateHTML = url =>
   fetch(baseURL + "/html?url=" + url)
