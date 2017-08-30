@@ -7,19 +7,18 @@ const Container = styled.section`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  overflow-y: scroll;
   transition: height .5s ease-in-out;
-  height: 0;
+
   width: 100%;
   ${p =>
     p.open
       ? `
-  height:500px;
+  height:auto;
   border-top: 1px solid ${p.theme.dark};
   border-bottom: 1px solid ${p.theme.dark};
 `
       : `
- height: 0;
+//  height: 0;
  `};
 `
 
@@ -30,11 +29,15 @@ class PreviewContainer extends Component {
 
   render() {
     const { isFetching, url, hasUrl } = this.props
-    return (
-      <Container open={!isFetching && hasUrl}>
-        <Embed width={`320px`} height={`480px`} url={url} />
-      </Container>
-    )
+    if (hasUrl && !isFetching) {
+      return (
+        <Container open={!isFetching && hasUrl}>
+          <Embed width={`320px`} height={`480px`} url={url} />
+        </Container>
+      )
+    } else {
+      return null
+    }
   }
 }
 const mapStateToProps = state => {
