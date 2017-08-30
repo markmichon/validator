@@ -1,6 +1,6 @@
 # Validator
 
-An application for speeding up checking of html and css validity. Ties in with validator-services node app.
+An application for speeding up checking of html and css validity. Ties in with validator-services node app. Preview [on Netlify](https://validator.netlify.com)
 
 ## Setup
 
