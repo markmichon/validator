@@ -544,46 +544,37 @@ const cardData = {
   ]
 }
 
-
-const statCards = storiesOf('Cards', module)
+const statCards = storiesOf("Cards", module)
 statCards.addDecorator(withKnobs)
 
 statCards.add("Pair", () =>
   <StatContainer>
     <StatCard title="HTML" items={cardData.items} />
-    <StatCard title="CSS" items={cardData.items}  active={boolean('Active', true)}/>
+    <StatCard
+      title="CSS"
+      items={cardData.items}
+      active={boolean("Active", true)}
+    />
     <StatCard title="Other" items={cardData.items} />
   </StatContainer>
 )
 
-storiesOf('Cards + Results', module).addDecorator(withKnobs)
-  .add('CSS', () =>
+storiesOf("Cards + Results", module).addDecorator(withKnobs).add("CSS", () =>
   <div>
-  <StatContainer>
-    <StatCard title="HTML" items={cardData.items} />
-    <StatCard title="CSS" items={cardData.items}  active/>
-    <StatCard title="Other" items={cardData.items} />
-  </StatContainer>
-  <ResultsList results={cssResults} open={boolean('Open', true)}/>
-  <p>This is some content</p>
+    <StatContainer>
+      <StatCard title="HTML" items={cardData.items} />
+      <StatCard title="CSS" items={cardData.items} active />
+      <StatCard title="Other" items={cardData.items} />
+    </StatContainer>
+    <ResultsList results={cssResults} open={boolean("Open", true)} />
+    <p>This is some content</p>
   </div>
 )
 
-storiesOf("Results List", module)
-  .add("CSS Results", () => <ResultsList results={cssResults} title="CSS" />)
-  .add("HTML Results", () => <ResultsList results={htmlResults} title="HTML" />)
-  .add("Side by Side", () =>
-    <div className="flex-container">
-      <ResultsList results={{}} title="HTML" />
-      <ResultsList results={cssResults} title="CSS" />
-    </div>
-  )
-
-storiesOf("Previews", module).add("320 and 600", () => {
+storiesOf("Previews", module).add("Responsive Preview", () => {
   return (
     <div className="flex-container">
-      <Embed url="http://markmichon.com" width="320" height="480" />
-      <Embed url="http://markmichon.com" width="600" height="800" />
+      <Embed url="http://markmichon.com" />
     </div>
   )
 })

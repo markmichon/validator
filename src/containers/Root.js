@@ -9,7 +9,7 @@ const theme = {
   dark: "hsla(0, 0%, 80%, 1.00)",
   light: "hsla(0, 0%, 98%, 1.00)",
   white: "",
-  brand: "",
+  brand: "hsla(213, 12%, 43%, 1.00)",
   copy: "black",
   error: "hsla(359, 74%, 78%, 1.00)",
   warning: "hsla(35, 93%, 72%, 1.00)",
