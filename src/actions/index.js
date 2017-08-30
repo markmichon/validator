@@ -1,49 +1,55 @@
-import * as service from '../services/rest';
+import * as service from "../services/rest"
 
-export const fetchUrl = (url) => (dispatch) => {
+export const viewResults = type => {
+  return {}
+}
+
+export const fetchUrl = url => dispatch => {
+  dispatch({
+    type: "VALIDATE_HTML_REQUEST",
+    url
+  })
 
   dispatch({
-    type: 'VALIDATE_HTML_REQUEST',
+    type: "VALIDATE_CSS_REQUEST",
     url
-  });
-
-  dispatch({
-    type: 'VALIDATE_CSS_REQUEST',
-    url
-  });
+  })
 
   service.validateHTML(url).then(
     response => {
       dispatch({
-        type: 'VALIDATE_HTML_SUCCESS',
+        type: "VALIDATE_HTML_SUCCESS",
         url,
         response
-      });
-    },
-    error => {
+      })
       dispatch({
-        type: 'VALIDATE_HTML_FAILURE',
-        url,
-        message: error.message || 'Something went wrong with html validation'
-      });
-    }
-  );
-
-  service.validateCSS(url).then(
-    response => {
-      dispatch({
-        type: 'VALIDATE_CSS_SUCCESS',
-        url,
-        response
+        type: "SET_URL",
+        url
       })
     },
     error => {
       dispatch({
-        type: 'VALIDATE_CSS_FAILURE',
+        type: "VALIDATE_HTML_FAILURE",
         url,
-        message: error.message || 'Something went wrong with css validation'
+        message: error.message || "Something went wrong with html validation"
       })
     }
   )
 
-};
+  service.validateCSS(url).then(
+    response => {
+      dispatch({
+        type: "VALIDATE_CSS_SUCCESS",
+        url,
+        response
+      })
+    },
+    error => {
+      dispatch({
+        type: "VALIDATE_CSS_FAILURE",
+        url,
+        message: error.message || "Something went wrong with css validation"
+      })
+    }
+  )
+}

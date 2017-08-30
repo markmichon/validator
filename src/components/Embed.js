@@ -1,20 +1,23 @@
-import React from 'react'
+import React from "react"
+import styled from "styled-components"
 
-const Embed = ({ url, width, height }) => {
-  let styles = {
-    width: width + 'px',
-    height: height + 'px'
-  }
+const Frame = styled.section`
+  width: ${p => p.width};
+  height: ${p => p.height};
+`
 
+const Iframe = styled.iframe`width: 100%;`
+const Embed = ({ width, height, url }) => {
   return (
-    <section style={styles}>
+    <Frame width={width} height={height}>
       <header className="results-header">
-        <h2>{width + "x" + height}</h2>
+        <h2>
+          {width + " by " + height}
+        </h2>
       </header>
-      <iframe src={url}></iframe>
-    </section>
+      <Iframe src={url} />
+    </Frame>
   )
-
 }
 
-export default Embed;
+export default Embed

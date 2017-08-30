@@ -1,5 +1,21 @@
 import { combineReducers } from "redux"
 
+const getCounts = results => {
+  if (results.errors && results.warnings) {
+    return [
+      {
+        type: "error",
+        count: results.errors.length
+      },
+      {
+        type: "warning",
+        count: results.warnings.length
+      }
+    ]
+  }
+  return
+}
+
 const isFetching = (state = false, action) => {
   switch (action.type) {
     case "VALIDATE_HTML_REQUEST":
@@ -15,7 +31,10 @@ const isFetching = (state = false, action) => {
 const htmlResults = (state = {}, action) => {
   switch (action.type) {
     case "VALIDATE_HTML_SUCCESS":
-      return Object.assign({}, action.response, { resultType: "HTML" })
+      return Object.assign({}, action.response, {
+        resultType: "HTML",
+        counts: getCounts(action.response)
+      })
     default:
       return state
   }
@@ -24,7 +43,10 @@ const htmlResults = (state = {}, action) => {
 const cssResults = (state = {}, action) => {
   switch (action.type) {
     case "VALIDATE_CSS_SUCCESS":
-      return Object.assign({}, action.response, { resultType: "CSS" })
+      return Object.assign({}, action.response, {
+        resultType: "CSS",
+        counts: getCounts(action.response)
+      })
     default:
       return state
   }
@@ -39,16 +61,22 @@ const ui = (state = initUiState, action) => {
     case "VALIDATE_HTML_SUCCESS":
     case "VALIDATE_CSS_SUCCESS":
       return Object.assign({}, state, { hasUrl: true })
+    case "SET_URL":
+      return Object.assign({}, state, { url: action.url })
     default:
       return state
   }
 }
 
+const resultsReducer = combineReducers({
+  css: cssResults,
+  html: htmlResults
+})
+
 const rootReducer = combineReducers({
   ui,
   isFetching,
-  htmlResults,
-  cssResults
+  results: resultsReducer
 })
 
 export default rootReducer
