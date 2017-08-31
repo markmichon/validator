@@ -53,6 +53,13 @@ const ResultsList = ({ results, open = false }) => {
               )
             : null}
         </List>}
+      <div>
+        <pre>
+          <code>
+            {results.raw}
+          </code>
+        </pre>
+      </div>
     </Container>
   )
 }
