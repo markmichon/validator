@@ -68,9 +68,21 @@ const ui = (state = initUiState, action) => {
   }
 }
 
+const rawData = (state = {}, action) => {
+  switch (action.type) {
+    case "SET_RAW_HTML":
+      return Object.assign({}, state, { html: action.response })
+    case "SET_RAW_CSS":
+      return Object.assign({}, state, { css: action.response })
+    default:
+      return state
+  }
+}
+
 const resultsReducer = combineReducers({
   css: cssResults,
-  html: htmlResults
+  html: htmlResults,
+  raw: rawData
 })
 
 const rootReducer = combineReducers({

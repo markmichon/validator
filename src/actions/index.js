@@ -20,12 +20,16 @@ export const fetchUrl = url => dispatch => {
       dispatch({
         type: "VALIDATE_HTML_SUCCESS",
         url,
-        response
+        response: response
       })
       dispatch({
         type: "SET_URL",
         url
       })
+      // dispatch({
+      //   type: "SET_RAW_HTML",
+      //   response: response.raw
+      // })
     },
     error => {
       dispatch({
