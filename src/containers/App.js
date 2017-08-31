@@ -3,6 +3,7 @@ import FormContainer from "./FormContainer"
 import ResultsContainer from "./ResultsContainer"
 import Header from "../components/Header"
 import PreviewContainer from "./PreviewContainer"
+import Switcher from "./Switcher"
 import { injectGlobal } from "styled-components"
 
 injectGlobal`
@@ -26,8 +27,7 @@ const App = () =>
   <div>
     <Header />
     <FormContainer />
-    <ResultsContainer />
-    <PreviewContainer />
+    <Switcher />
   </div>
 
 export default App

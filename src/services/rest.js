@@ -1,5 +1,11 @@
-// export const baseURL = "https://validator-services.now.sh"
-export const baseURL = "http://localhost:5000"
+let api
+if (process.env.NODE_ENV !== "production") {
+  api = "http://localhost:5000"
+} else {
+  api = "https://validator-services.now.sh"
+}
+
+export const baseURL = api
 
 export const validateHTML = url =>
   fetch(baseURL + "/html?url=" + url)
@@ -17,4 +23,13 @@ export const validateHTML = url =>
     })
 
 export const validateCSS = url =>
-  fetch(baseURL + "/css?url=" + url).then(response => response.json())
+  fetch(baseURL + "/css?url=" + url)
+    .then(response => response.json())
+    .then(response => {
+      const { validation, raw } = response
+      return {
+        warnings: validation.warnings,
+        errors: validation.errors,
+        raw: raw
+      }
+    })
