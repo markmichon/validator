@@ -3,8 +3,6 @@ import { connect } from "react-redux"
 import ResultsList from "../components/ResultsList"
 import PreviewContainer from "./PreviewContainer"
 import styled from "styled-components"
-import StatContainer from "../components/StatContainer"
-import StatCard from "../components/StatCard"
 const FlexContainer = styled.div`
   display: flex;
   width: 100%;
@@ -15,9 +13,9 @@ const FlexContainer = styled.div`
 
 const Count = styled.span`
   color: ${p =>
-    p.type == "error"
+    p.type === "error"
       ? p.theme.error
-      : p.type == "warning" ? p.theme.warning : `black`};
+      : p.type === "warning" ? p.theme.warning : `black`};
   padding-left: .5rem;
 `
 
@@ -56,6 +54,8 @@ class Switcher extends Component {
         return <ResultsList type={`css`} results={props.results.css} />
       case "responsive":
         return <PreviewContainer />
+      default:
+        return null
     }
   }
 

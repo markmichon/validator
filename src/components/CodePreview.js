@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import Prism from "prismjs"
+
 require("../styles/prism-vs.css")
 
 const Pre = styled.pre`
@@ -10,13 +10,10 @@ const Pre = styled.pre`
   max-height: 50vh;
 `
 
-const CodePreview = ({ raw, syntax }) => {
-  const language = syntax === "html" ? "markup" : syntax
-
-  const output = Prism.highlight(raw, Prism.languages[language])
+const CodePreview = ({ raw }) => {
   return (
     <Pre>
-      <code dangerouslySetInnerHTML={{ __html: output }} />
+      <code dangerouslySetInnerHTML={{ __html: raw }} />
     </Pre>
   )
 }

@@ -42,7 +42,7 @@ const ResultsList = ({ results, open = false, type }) => {
             : null}
         </List>}
 
-      {results.raw && <CodePreview raw={results.raw} syntax={type} />}
+      {results.raw && <CodePreview raw={results.raw} />}
     </Container>
   )
 }
