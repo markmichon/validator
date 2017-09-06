@@ -2,7 +2,7 @@ let api
 if (process.env.NODE_ENV !== "production") {
   api = "http://localhost:5000"
 } else {
-  api = "https://validator-services.herokuapp.com/"
+  api = "https://validator-services.herokuapp.com"
 }
 
 export const baseURL = api
