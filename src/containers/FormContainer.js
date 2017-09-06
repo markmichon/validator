@@ -6,10 +6,8 @@ import { fetchUrl } from "../actions"
 import URL from "url-parse"
 
 const cleanUrl = url => {
-  console.log("url", url)
   const details = new URL(url)
   if (details.protocol) {
-    console.log(details)
     return url
   } else {
     return `https://${url}`
